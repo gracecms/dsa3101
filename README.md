@@ -4,6 +4,9 @@
 ## Project Introduction
 In this project, we analyze online shopper behavior through exploratory data analysis (EDA) and K-Means Clustering algorithm, and propose a system to predict the customer’s likelihood to abandon the session without any purchase. The first module of the system is a Stay Duration Prediction Model, which gives a conservative estimate on the session duration when a customer starts a session. When the session durations exceeds the estimate produced by the first module, the second module of the system, a Transaction Prediction Model, will be triggered to predict the likelihood of purchasing for the customer using clickstream data kept track during the session.
 
+## Project Objectives
+-to be added-
+
 ## Project Description
 In the first module, the data is fed to Linear Regression, Decision Tree Regressor and Gradient Boosting Regressor as input. The results show that the Gradient Boosting Regressor has the lowest Root Mean Squared Error (RMSE).
 
@@ -12,7 +15,7 @@ In the second module, the data is fed to Logistic Regression, Decision Tree (DT)
 The modules are used together to determine customers who are likely to leave the session without purchasing. Actions could be taken accordingly on the identified customers to improve purchase conversion rates. Our findings show the feasibility of an accurate and scalable system for predicting purchase likelihood using clickstream data.
 
 ## Results
-Summary of training results on the dataset.
+### Summary of training results on the dataset.
 
 Module 1:
 | Model                     | RMSE     | MAE      |
@@ -28,9 +31,25 @@ Module 2:
 | Simple Decision Tree      | 0.873    | 0.873    |
 | Gradient Boosted Tree     | 0.895    | 0.895    |
 
+### Summary of training results on the dataset.
+
+Module 1 (GradientBoostingRegressor):
+| Metrics   | Score     |
+|-----------|-----------|
+| RMSE      | 2.083     |
+| MAE       | 1.256     |
+
+Module 2 (Gradient Boosted Tree):
+| Metrics   | Score     |
+|-----------|-----------|
+| ROC-AUC   | 0.823     |
+| F1        | 0.873     |
+
+
 ## Project Structure
 ```
 ├── data
+│   └── description.txt                     <-- description of dataset
 │   └── online_shoppers_intention.csv       <-- full original dataset
 │   └── train_origin.csv                    <-- original dataset used for 
 │   └── train_bal.csv                       <-- rebalanced dataset used for 
@@ -40,8 +59,22 @@ Module 2:
 │   └── 02_k_means_clustering.ipynb
 │   └── 03_stay_duration_prediction.ipynb
 │   └── 04_transaction_prediction.ipynb
-└──
+├── trained_models
+│   └── stay_duration_pred.json             <-- config file for module 1
+│   └── stay_duration_pred.sav              <-- trained model for module 1
+│   └── transaction_pred.json               <-- config file for module 2
+│   └── transaction_pred.sav                <-- trained model for module 2
+├── prediction.py                           <-- script used for prediction
+└── requirements.txt
 ```
+
+## Usage - Getting Predictions
+```
+python prediction.py \
+    --module {module number} \
+    --file_path {file path to dataset for prediction}
+```
+Runs prediction on a dataset in `file_path` (default: `data/test.csv`) based on the `module` (either 1 or 2). Results of the prediction will be saved in a `.csv` file.
 
 ### Methods Used
 * Inferential Statistics
@@ -50,11 +83,19 @@ Module 2:
 * Predictive Modeling
 
 ### Libraries
-* matplotlib 
+* matplotlib
+* seaborn
 * numpy 
 * pandas
+* scipy
 * sklearn
 * xgboost
+* statsmodels
+* pymrmr
+* factor_analyzer
+* kneed
+* yellowbrick
+* plotly
 
 ### Members (Group 7):
 
