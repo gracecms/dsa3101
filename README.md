@@ -5,7 +5,8 @@
 In this project, we analyze online shopper behavior through exploratory data analysis (EDA) and K-Means Clustering algorithm, and propose a system to predict the customer’s likelihood to abandon the session without any purchase. The first module of the system is a Stay Duration Prediction Model, which gives a conservative estimate on the session duration when a customer starts a session. When the session durations exceeds the estimate produced by the first module, the second module of the system, a Transaction Prediction Model, will be triggered to predict the likelihood of purchasing for the customer using clickstream data kept track during the session.
 
 ## Project Objectives
--to be added-
+The project objective is to identify shoppers who are likely to leave the site without a purchase by having the shop to programme for a pop-up discount for the potential buyer in the hopes that they will be receptive enough to make a purchase. Certainly, handing out vouchers can affect businesses’ bottom line, and if adopted they will need to evaluate whether they can break even. They will need to take into account their total costs, present revenue, and potential revenue considering the predicted number of vouchers used. 
+If this system were to be implemented, it can be further improved by analysing the optimal time for the release of promotions to capture consumers before they churn.
 
 ## Project Description
 In the first module, the data is fed to Linear Regression, Decision Tree Regressor and Gradient Boosting Regressor as input. The results show that the Gradient Boosting Regressor has the lowest Root Mean Squared Error (RMSE).
